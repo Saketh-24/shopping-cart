@@ -9,7 +9,7 @@ const cartSlice = createSlice({
     },
 
     remove(state, action) {
-      state.filter((item) => item.id !== action.payload);
+      return state.filter((item) => item.id !== action.payload);
     },
   }, // within reducers we write function to listen to actions
 });
