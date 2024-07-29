@@ -2,9 +2,11 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Homepage from "./pages/HomePage";
 import Cart from "./pages/Cart";
 import { IoMdCart } from "react-icons/io";
+import { useSelector } from "react-redux";
 import "./App.css";
 
 function App() {
+  const cartCount = useSelector((state) => state.cart); // useselector takes overall state
   return (
     <Router>
       <div className="flex bg-gray-100 justify-center items-center p-6 text-gray-700">
@@ -13,7 +15,7 @@ function App() {
           <Link to="/cart" className="flex">
             <IoMdCart className="text-3xl mt-4" />
             <div className="flex bg-orange-700 h-6 w-6 rounded-full justify-center items-center">
-              <p className="text-white text-[12px]">0</p>
+              <p className="text-white text-[12px]">{cartCount.length}</p>
             </div>
           </Link>
         </div>

@@ -1,7 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { add } from "../state/cartSlice";
+import { useDispatch } from "react-redux";
 
 const Homepage = () => {
+  const dispatch = useDispatch();
   const [products, setproducts] = useState([]);
   const [loading, setloading] = useState(false);
   const handleFetch = async () => {
@@ -17,6 +20,10 @@ const Homepage = () => {
   useEffect(() => {
     handleFetch();
   }, []);
+
+  const handleAdd = (product) => {
+    dispatch(add(product));
+  };
 
   return (
     <div className="flex mx-auto max-w-[1200px] flex-col pt-6">
@@ -39,7 +46,12 @@ const Homepage = () => {
                 {product.title}
               </h2>
               <p>Price: {product.price}</p>
-              <button className="bg-gray-600 text-white p-4">
+              <button
+                onClick={() => {
+                  handleAdd(product);
+                }}
+                className="bg-gray-600 text-white p-4"
+              >
                 add to cart
               </button>
             </div>
